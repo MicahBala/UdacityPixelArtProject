@@ -7,7 +7,7 @@ let sizeHeight, sizeWidth;
 $('#sizePicker').submit(function(e){
   sizeHeight = $('#inputHeight').val();//retrieve number entered for grid column
   sizeWidth = $('#inputWidth').val();//retrieve number entered for grid row
-  myColor = $('#colorPicker').val();//retrieve color chosen
+
   makeGrid();
   e.preventDefault();//Prevent the default action of submiting the form
 })
@@ -30,7 +30,12 @@ function makeGrid() {
   }
   //clicking on any td elemnt will apply the selected color to that td element
   $('td').click(function(){
-    $(this).css('background-color',myColor);
-  })
+    myColor = $('#colorPicker').val();//retrieve color chosen
 
+    if ($(this).attr('style')){
+      $(this).removeAttr('style');
+    } else{
+      $(this).css('background-color',myColor);
+    }
+  })
 }
